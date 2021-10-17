@@ -1,11 +1,17 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import Router from 'next/router';
+import { setCookie } from 'nookies';
 import { api } from '../services/api';
 
 type User = {
   email: string;
   permissions: string[];
   roles: string[];
+};
+
+interface LoginResponse extends User {
+  refreshToken: string;
+  token: string;
 };
 
 type SignInCredentials = {
@@ -31,9 +37,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signIn({ email, password, }: SignInCredentials) {
     try {
-      const { data: { permissions, roles } } = await api.post<User>('sessions', {
+      const { data: {
+        permissions,
+        refreshToken,
+        roles,
+        token
+      } } = await api.post<LoginResponse>('sessions', {
         email,
         password
+      });
+
+      setCookie(undefined, '@next-auth.refreshToken', refreshToken, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/'
+      });
+      setCookie(undefined, '@next-auth.token', token, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/'
       });
 
       setUser({
