@@ -11,13 +11,13 @@ export function useCan({ permissions = [], roles = [] }: UseCanParams) {
 
   if (!isAuthenticated) return false;
 
-  if (!!permissions.length) {
+  if (permissions.length) {
     const hasAllPermissions = permissions.every(permission => user.permissions.includes(permission));
 
     if (!hasAllPermissions) return false;
   }
 
-  if (!!roles.length) {
+  if (roles.length) {
     const hasAllRoles = permissions.some(role => user.roles.includes(role));
 
     if (!hasAllRoles) return false;
