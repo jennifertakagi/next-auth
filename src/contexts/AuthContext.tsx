@@ -2,17 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import Router from 'next/router';
 import { setCookie, parseCookies } from 'nookies';
 import { api } from '../services/api';
-
-type User = {
-  email: string;
-  permissions: string[];
-  roles: string[];
-};
-
-interface LoginResponse extends User {
-  refreshToken: string;
-  token: string;
-};
+import { User, LoginResponse } from '../shared/types/User';
 
 type SignInCredentials = {
   email: string;
