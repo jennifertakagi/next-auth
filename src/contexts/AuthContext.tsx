@@ -19,7 +19,7 @@ type AuthProviderProps = {
   children: ReactNode;
 };
 
-const AuthContext = createContext({} as AuthContextData);
+export const AuthContext = createContext({} as AuthContextData);
 
 export function signOut () {
   destroyCookie(undefined, '@next-auth.token');
