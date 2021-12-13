@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { parseCookies, setCookie } from 'nookies';
 import { signOut } from '../contexts/AuthContext';
+import { AuthTokenError } from '../shared/errors/authTokenError';
 import { LoginResponse } from '../shared/types/User';
 
 type ErrorAuthResponse = {
@@ -59,7 +60,11 @@ export function setupAPIClient(context = undefined) {
             failedRequestsQueue.forEach(request => request.onFailure(error));
             failedRequestsQueue = [];
   
-            if (process.browser) signOut();
+            if (!process.browser) {
+              return Promise.reject(new AuthTokenError());
+            } 
+    
+            signOut();
           }).finally(() => {
             isRefreshing = false;
           });
@@ -78,7 +83,11 @@ export function setupAPIClient(context = undefined) {
           });
         });
       } else {
-        if (process.browser) signOut();
+        if (!process.browser) {
+          return Promise.reject(new AuthTokenError());
+        } 
+
+        signOut();
       }
     }
   
