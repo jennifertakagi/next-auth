@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { validateUserPermissions } from "../shared/commons/validateUserPermissions";
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
+import { validateUserPermissions } from '../shared/commons/validateUserPermissions';
 
 type UseCanParams = {
   permissions?: string[];

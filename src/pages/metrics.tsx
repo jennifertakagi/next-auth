@@ -1,5 +1,5 @@
-import { setupAPIClient } from "../services/apiClient";
-import { withSSRAuth } from "../shared/commons/withSSRAuth";
+import { setupAPIClient } from '../services/apiClient';
+import { withSSRAuth } from '../shared/commons/withSSRAuth';
 
 export default function Metrics() {
   return (
@@ -11,12 +11,12 @@ export default function Metrics() {
 
 export const getServerSideProps = withSSRAuth(async (context) => {
   const apiClient = setupAPIClient(context);
-  const response = await apiClient.get("/me");
+  const response = await apiClient.get('/me');
 
   return {
     props: {}
   }
 }, {
-  permissions: ["metrics.list"],
-  roles: ["administrator"]
+  permissions: ['metrics.list'],
+  roles: ['administrator']
 });

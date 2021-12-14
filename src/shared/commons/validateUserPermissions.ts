@@ -1,7 +1,7 @@
 import { User } from '../types/User';
 
 type ValidateUserPermissionsParams = {
-  user: Omit<User, "email">;
+  user: Omit<User, 'email'>;
   permissions?: string[];
   roles?: string[];
 }

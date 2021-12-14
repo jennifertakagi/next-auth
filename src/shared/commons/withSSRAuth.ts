@@ -1,9 +1,9 @@
-import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { destroyCookie, parseCookies } from "nookies";
-import { AuthTokenError } from "../errors/authTokenError";
-import decode from "jwt-decode";
-import { validateUserPermissions } from "./validateUserPermissions";
-import { redirect } from "next/dist/server/api-utils";
+import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
+import { destroyCookie, parseCookies } from 'nookies';
+import { AuthTokenError } from '../errors/authTokenError';
+import decode from 'jwt-decode';
+import { validateUserPermissions } from './validateUserPermissions';
+import { redirect } from 'next/dist/server/api-utils';
 
 type WithSSRAuthOptions = {
   permissions?: string[];

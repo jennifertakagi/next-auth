@@ -1,5 +1,5 @@
-import React from "react"
-import { AuthProvider } from "../contexts/AuthContext"
+import React from 'react'
+import { AuthProvider } from '../contexts/AuthContext'
 
 function MyApp({ Component, pageProps }) {
   return (
